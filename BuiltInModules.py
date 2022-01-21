@@ -9,7 +9,7 @@ class Afk:
 
     def __init__(self, CollectionPath):
         self.LastAction = time.time()
-        self.KickInDelay = 0.1
+        self.KickInDelay = 0.5
         self.Collection = CollectionPath
         self.DelayBetweenRp = 5
         self.TimeInDelay = 0
