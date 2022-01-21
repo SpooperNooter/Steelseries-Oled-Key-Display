@@ -3,7 +3,7 @@
 
 Should support any 128x40 OLED screen on a Steelseries Apex Keyboard (I've only tested it on my Apex 7)
 
-To run, download the source code, install Python 3.9, `pip install -r requirements.txt`, and run `Oled_app.py`
+To run, clone or download this repo, install Python 3.8, `pip install -r requirements.txt`, and run `Oled_app.py`
 
 ## Examples 
 
