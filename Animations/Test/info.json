@@ -1,0 +1,739 @@
+{ "frames": {
+   "AFK_Face 0.aseprite": {
+    "frame": { "x": 5, "y": 5, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 1.aseprite": {
+    "frame": { "x": 5, "y": 50, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 2.aseprite": {
+    "frame": { "x": 5, "y": 50, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 3.aseprite": {
+    "frame": { "x": 5, "y": 50, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 4.aseprite": {
+    "frame": { "x": 5, "y": 50, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 5.aseprite": {
+    "frame": { "x": 5, "y": 95, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 6.aseprite": {
+    "frame": { "x": 5, "y": 95, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 7.aseprite": {
+    "frame": { "x": 5, "y": 140, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 8.aseprite": {
+    "frame": { "x": 5, "y": 140, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 9.aseprite": {
+    "frame": { "x": 5, "y": 185, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 10.aseprite": {
+    "frame": { "x": 5, "y": 185, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 11.aseprite": {
+    "frame": { "x": 5, "y": 230, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 12.aseprite": {
+    "frame": { "x": 5, "y": 275, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 13.aseprite": {
+    "frame": { "x": 5, "y": 320, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 14.aseprite": {
+    "frame": { "x": 5, "y": 365, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 15.aseprite": {
+    "frame": { "x": 5, "y": 410, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 16.aseprite": {
+    "frame": { "x": 5, "y": 455, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 17.aseprite": {
+    "frame": { "x": 5, "y": 500, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 18.aseprite": {
+    "frame": { "x": 5, "y": 545, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 19.aseprite": {
+    "frame": { "x": 5, "y": 590, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 20.aseprite": {
+    "frame": { "x": 5, "y": 635, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 21.aseprite": {
+    "frame": { "x": 5, "y": 635, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 22.aseprite": {
+    "frame": { "x": 5, "y": 680, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 23.aseprite": {
+    "frame": { "x": 5, "y": 680, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 24.aseprite": {
+    "frame": { "x": 5, "y": 725, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 25.aseprite": {
+    "frame": { "x": 5, "y": 770, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 26.aseprite": {
+    "frame": { "x": 5, "y": 815, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 27.aseprite": {
+    "frame": { "x": 5, "y": 860, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 28.aseprite": {
+    "frame": { "x": 5, "y": 905, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 29.aseprite": {
+    "frame": { "x": 5, "y": 905, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 30.aseprite": {
+    "frame": { "x": 5, "y": 905, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 31.aseprite": {
+    "frame": { "x": 5, "y": 905, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 32.aseprite": {
+    "frame": { "x": 5, "y": 905, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 33.aseprite": {
+    "frame": { "x": 5, "y": 950, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 34.aseprite": {
+    "frame": { "x": 5, "y": 950, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 35.aseprite": {
+    "frame": { "x": 5, "y": 950, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 36.aseprite": {
+    "frame": { "x": 5, "y": 950, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 37.aseprite": {
+    "frame": { "x": 5, "y": 950, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 38.aseprite": {
+    "frame": { "x": 5, "y": 950, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 39.aseprite": {
+    "frame": { "x": 5, "y": 950, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 40.aseprite": {
+    "frame": { "x": 5, "y": 950, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 41.aseprite": {
+    "frame": { "x": 5, "y": 950, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 42.aseprite": {
+    "frame": { "x": 5, "y": 950, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 43.aseprite": {
+    "frame": { "x": 5, "y": 995, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 44.aseprite": {
+    "frame": { "x": 5, "y": 995, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 45.aseprite": {
+    "frame": { "x": 5, "y": 995, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 46.aseprite": {
+    "frame": { "x": 5, "y": 1040, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 47.aseprite": {
+    "frame": { "x": 5, "y": 1040, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 48.aseprite": {
+    "frame": { "x": 5, "y": 1085, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 49.aseprite": {
+    "frame": { "x": 5, "y": 1130, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 50.aseprite": {
+    "frame": { "x": 5, "y": 1175, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 51.aseprite": {
+    "frame": { "x": 5, "y": 1175, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 52.aseprite": {
+    "frame": { "x": 5, "y": 1220, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 53.aseprite": {
+    "frame": { "x": 5, "y": 1265, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 54.aseprite": {
+    "frame": { "x": 5, "y": 1310, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 55.aseprite": {
+    "frame": { "x": 5, "y": 1355, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 56.aseprite": {
+    "frame": { "x": 5, "y": 1400, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 57.aseprite": {
+    "frame": { "x": 5, "y": 1445, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 58.aseprite": {
+    "frame": { "x": 5, "y": 1445, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 59.aseprite": {
+    "frame": { "x": 5, "y": 1490, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 60.aseprite": {
+    "frame": { "x": 5, "y": 1490, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 61.aseprite": {
+    "frame": { "x": 5, "y": 1535, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 62.aseprite": {
+    "frame": { "x": 5, "y": 1535, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 63.aseprite": {
+    "frame": { "x": 5, "y": 1535, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 64.aseprite": {
+    "frame": { "x": 5, "y": 1580, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 65.aseprite": {
+    "frame": { "x": 5, "y": 1625, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 66.aseprite": {
+    "frame": { "x": 5, "y": 1625, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 67.aseprite": {
+    "frame": { "x": 5, "y": 1670, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 68.aseprite": {
+    "frame": { "x": 5, "y": 1670, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 69.aseprite": {
+    "frame": { "x": 5, "y": 1715, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 70.aseprite": {
+    "frame": { "x": 5, "y": 1715, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 71.aseprite": {
+    "frame": { "x": 5, "y": 1670, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 72.aseprite": {
+    "frame": { "x": 5, "y": 1670, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 73.aseprite": {
+    "frame": { "x": 5, "y": 1760, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 74.aseprite": {
+    "frame": { "x": 5, "y": 1760, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 75.aseprite": {
+    "frame": { "x": 5, "y": 1805, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 76.aseprite": {
+    "frame": { "x": 5, "y": 1850, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 77.aseprite": {
+    "frame": { "x": 5, "y": 1850, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 78.aseprite": {
+    "frame": { "x": 5, "y": 1850, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 79.aseprite": {
+    "frame": { "x": 5, "y": 1850, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 80.aseprite": {
+    "frame": { "x": 5, "y": 1850, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 81.aseprite": {
+    "frame": { "x": 5, "y": 1850, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 82.aseprite": {
+    "frame": { "x": 5, "y": 1895, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 83.aseprite": {
+    "frame": { "x": 5, "y": 1940, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 84.aseprite": {
+    "frame": { "x": 5, "y": 1985, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 85.aseprite": {
+    "frame": { "x": 5, "y": 2030, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 86.aseprite": {
+    "frame": { "x": 5, "y": 2075, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 87.aseprite": {
+    "frame": { "x": 5, "y": 2120, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 88.aseprite": {
+    "frame": { "x": 5, "y": 2120, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   },
+   "AFK_Face 89.aseprite": {
+    "frame": { "x": 5, "y": 5, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 33
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.21-dev",
+  "image": "sheet.png",
+  "format": "RGBA8888",
+  "size": { "w": 138, "h": 2165 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Background", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

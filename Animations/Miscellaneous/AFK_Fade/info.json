@@ -1,0 +1,145 @@
+{ "frames": {
+   "AFK_FadeInto 0.aseprite": {
+    "frame": { "x": 5, "y": 5, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 1.aseprite": {
+    "frame": { "x": 5, "y": 50, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 2.aseprite": {
+    "frame": { "x": 5, "y": 95, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 3.aseprite": {
+    "frame": { "x": 5, "y": 140, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 4.aseprite": {
+    "frame": { "x": 5, "y": 185, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 5.aseprite": {
+    "frame": { "x": 5, "y": 230, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 6.aseprite": {
+    "frame": { "x": 5, "y": 275, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 7.aseprite": {
+    "frame": { "x": 5, "y": 320, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 8.aseprite": {
+    "frame": { "x": 5, "y": 365, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 9.aseprite": {
+    "frame": { "x": 5, "y": 410, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 10.aseprite": {
+    "frame": { "x": 5, "y": 455, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 11.aseprite": {
+    "frame": { "x": 5, "y": 500, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 12.aseprite": {
+    "frame": { "x": 5, "y": 545, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 13.aseprite": {
+    "frame": { "x": 5, "y": 590, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 14.aseprite": {
+    "frame": { "x": 5, "y": 635, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   },
+   "AFK_FadeInto 15.aseprite": {
+    "frame": { "x": 5, "y": 680, "w": 128, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 40 },
+    "sourceSize": { "w": 128, "h": 40 },
+    "duration": 66
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.21-dev",
+  "format": "RGBA8888",
+  "size": { "w": 138, "h": 725 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
