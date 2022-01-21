@@ -19,7 +19,6 @@ pickleshare==0.7.5
 Pillow==8.4.0
 pipwin==0.5.1
 prompt-toolkit==3.0.23
-PyAudio @ file:///C:/Users/qwertyuiopasdfghjklz/pipwin/PyAudio-0.2.11-cp38-cp38-win32.whl
 Pygments==2.10.0
 pyjsparser==2.7.1
 pynput==1.7.4
