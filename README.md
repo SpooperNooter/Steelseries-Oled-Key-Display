@@ -1,6 +1,9 @@
 # Steelseries-Oled-Key-Display
 (wip) Simple (very rough) program to display pressed keystrokes on one of steelseries apex keyboards
 
+# How to run
+Download the code, then run Oled_app.py
+
 # How it works
 There's three main programs, BuiltInModules, Oled_app, and UtilityModules. 
 
