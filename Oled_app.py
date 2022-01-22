@@ -29,6 +29,6 @@ def Start():
     B.StartCollection()
 
 Start()
-input("aaaa")
+
 
 
