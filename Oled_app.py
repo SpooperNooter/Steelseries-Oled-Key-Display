@@ -28,8 +28,4 @@ def Start():
             Worker.Work(B.ClassInstance[E].Start)
     B.StartCollection()
 
-input("a")
 Start()
-
-
-
