@@ -9,7 +9,7 @@ class Afk:
 
     def __init__(self, CollectionPath):
         self.LastAction = time.time()
-        self.KickInDelay = 0.5
+        self.KickInDelay = 0.1
         self.Collection = CollectionPath
         self.DelayBetweenRp = 5
         self.TimeInDelay = 0
@@ -17,7 +17,7 @@ class Afk:
         self.Transition = 'LaggedSlideFade'
         self.StartAnimation = 'RoundEyesInvert'
         self.RepeatAnimation = 'RepeatBreath'
-        self.EndingTransition = 'Miscellaneous/AFK_Fade'
+        self.EndingTransition = 'ReverseSlideFade'
         self.Startup = UtilityModules.Sprite(self.Transition,self.StartAnimation)
         self.Rp = UtilityModules.Sprite(self.RepeatAnimation, RepeatOnFinished=True)
         self.End = UtilityModules.Sprite(self.EndingTransition)
@@ -51,7 +51,7 @@ class Afk:
                 B = self.BetweenRp
             return B
         else:
-            if self.Rp.finished != True:
+            if self.Rp.finished != True and self.Rp.FrameOn != -1:
                 return self.Rp.next()
             elif self.End.finished != True:
                 return self.End.next()
