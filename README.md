@@ -60,6 +60,13 @@ This script contains python classes, or "modules", for creating, altering, and s
   - `RequestOverride()` changes the class requested from, if an override was previously requested and not yet relinquished, adds request to a queue.
   - `EndOverride()` sets path to default.
 
+- `Bitmaps`
+  - Basic bitmap creation and manupulation
+  - `CreateEmptyBitmap()` creates a bitmap according to input width and height, all intergers are set to input IntValue, default to 0.
+  - `RoundCorners()` removes the very corners of the input bitmap, I dont know why I made this.
+  - `ImportBitmapFromPng()` does what it says on the box, has another sheet to determine how to deal with non-opaque pixels
+  - `Copy()` returns an exact replica of input bitmap, but creates it as a clean, new object, so that any actions performed upon the new bitmap do not occur to the original bitmap. 
+
 - BuiltInModules.py
 
 Contains modules that use that classes above, more specifically the AFK feature and keyboard keystroke display.
