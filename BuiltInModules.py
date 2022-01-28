@@ -76,6 +76,7 @@ class Keystroke_logging:
         self.KeyboardSet = "ShadowedKeyboard"
         self.Collection = CollectionPath
         self.Base = Bitmapping.ImportBitmapFromPNG(f"Animations/{self.KeyboardSet}.png")
+        print(self.Base)
         self.WPM = 0
         a = {"Q": (10,1), "W": (21,1), "E": (32,1), "R": (43,1), "T": (54,1), "Y": (65,1), "U": (76,1),
                               "I": (87,1), "O": (98,1), "P": (109,1), "A": (15,11), "S": (26,11),"D": (37,11),
