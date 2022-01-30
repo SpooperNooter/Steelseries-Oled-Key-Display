@@ -295,11 +295,10 @@ This script contains python classes, or "modules", for creating, altering, and s
   - `Post()` posts a json packet to SSE.
   - `value_lottery()` returns a number between 1 and 100, sequentially going upwards, then resetting back to 1 from 100. I used it for creating json packets.
 
-- `Working`
-  - Basic multithreading module
+- `Work`
+  - Basic multithreading module, call it, providing the function to target, to use.
   - `Timestamper()` prints start and end times of a thread, along with function and the name of the class of the function, to be used by `Work()`
   - `FunctionClass()` finds the class name of a function under it.
-  - `Work()` starts a thread, running `Timestamper()` to print info.
 
 - BuiltInModules.py
 
