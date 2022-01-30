@@ -1,7 +1,9 @@
+import pynput.mouse
 from pynput import keyboard
 from pynput.mouse import Listener
 import UtilityModules
 import time
+import ctypes
 
 Bitmapping = UtilityModules.Bitmaps()
 
@@ -28,8 +30,8 @@ class Afk:
     def Start(self):
         keyboardListener = keyboard.Listener(on_press=self.RegisterAction)
         keyboardListener.start()
-        mouseListener = Listener(on_move= self.RegisterAction, on_click= self.RegisterAction, on_scroll= self.RegisterAction)
-        mouseListener.start()
+        self.mouseListener = Listener(on_move= self.RegisterAction, on_click= self.RegisterAction, on_scroll= self.RegisterAction)
+        self.mouseListener.start()
         a = 0
         while True:
             if a >= self.Collection.FPS:
@@ -65,18 +67,24 @@ class Afk:
 class Keystroke_logging:
 
     class Keydata:
-        def __init__(self,Letter,Offset,sprite):
+        def __init__(self,Letter,Offset,sprite,DivideFrame = 5):
             self.Letter = Letter
             self.Offset = Offset
             self.Sprite = sprite
-            self.DivideFrame = 5
+            self.DivideFrame = DivideFrame
+            self.Mode = None
+
+    class MouseButton:
+        def __init__(self,sprite):
+            self.Sprite = sprite
             self.Mode = None
 
     def __init__(self, CollectionPath):
         self.KeyboardSet = "ShadowedKeyboard"
         self.Collection = CollectionPath
         self.Base = Bitmapping.ImportBitmapFromPNG(f"Animations/{self.KeyboardSet}.png")
-        print(self.Base)
+        self.Background = Bitmapping.CreateEmptyBitmap(128,40)
+        self.MouseOverlay = Bitmapping.CreateEmptyBitmap(128,40,2)
         self.WPM = 0
         a = {"Q": (10,1), "W": (21,1), "E": (32,1), "R": (43,1), "T": (54,1), "Y": (65,1), "U": (76,1),
                               "I": (87,1), "O": (98,1), "P": (109,1), "A": (15,11), "S": (26,11),"D": (37,11),
@@ -89,6 +97,11 @@ class Keystroke_logging:
                                "\x04" : "D", "\x06" : "F", "\x07" : "G", "\x08" : "H", "\n" : "J", "\x0b" : "K",
                                "\x0c" : "L", "\x1a" : "Z", "\x18" : "X", "\x03" : "C", "\x16": "V", "\x02" : "B",
                                "\x0e" : "N", "\r" : "M"}
+        self.KeyDictionary["Button.left"] = self.Keydata("Button.left",(0,0),UtilityModules.Sprite("LeftClick"),3)
+        self.KeyDictionary["Button.right"] = self.Keydata("Button.right",(122,0),UtilityModules.Sprite("RightClick"),3)
+        self.mouse = pynput.mouse.Controller()
+        self.screensize = (ctypes.windll.user32.GetSystemMetrics(0), ctypes.windll.user32.GetSystemMetrics(1))
+        self.maxGyro = (2,1)
 
     def Return_base(self):
         if self.Collection.CurrentFrame == self.Collection.FPS:
@@ -109,12 +122,23 @@ class Keystroke_logging:
                 elif i.Sprite.FrameOn < i.DivideFrame:
                     a = i.Sprite.next()
             if a != None:
-                self.Base = Bitmapping.AlterBitmap(self.Base,a,i.Offset)
+                self.Base = Bitmapping.AlterBitmap(self.Base, a, i.Offset)
+        #return Bitmapping.AlterBitmap(Bitmapping.Copy(self.Background),self.Base,(round(self.mouse.position[0]/((s := self.screensize[0]/self.maxGyro[0]))),round(self.mouse.position[1]/((s := self.screensize[0]/self.maxGyro[1])))))
         return self.Base
 
     def Start(self):
-        with keyboard.Listener(on_press=self.Press, on_release=self.Release) as listener:
-            listener.join()
+        keylistener = keyboard.Listener(on_press=self.Press, on_release=self.Release)
+        keylistener.start()
+        mouselistener = Listener(on_click=self.Mouseclick)
+        mouselistener.start()
+
+    def Mouseclick(self,*args):
+        try:
+            if args[3]:
+                self.KeyDictionary[str(args[2])].Mode = "press"
+            else:
+                self.KeyDictionary[str(args[2])].Mode = "release"
+        except: pass
 
     def Press(self, key):
         self.WPM += 1/7
@@ -122,7 +146,6 @@ class Keystroke_logging:
             try: k = key.char.capitalize() if key.char.isalpha() == True else x
             except: k = self.CtrlDictionary[key.char]
         except:
-
             if key == keyboard.Key.space: k = "Key.space"
             else: return 0
         self.KeyDictionary[k].Mode = "press"

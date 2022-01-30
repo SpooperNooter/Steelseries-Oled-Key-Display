@@ -1,5 +1,6 @@
 import UtilityModules
 import BuiltInModules
+import sys
 
 """
 In order for the app to be able to handle custom modules for displaying, the code is structured as such;
@@ -13,7 +14,6 @@ along with a multithreading module for simple working
 
 Posting = UtilityModules.Packet_posting()
 Bitmapping = UtilityModules.Bitmaps()
-Worker = UtilityModules.Working()
 Modules = [UtilityModules.Packet_posting,BuiltInModules.Keystroke_logging,BuiltInModules.Afk]
 
 def Start():
@@ -25,7 +25,10 @@ def Start():
             raise IndexError("Module %s tried to be started multiple times" % E)
         except:
             B.ClassInstance[E] = e(B)
-            Worker.Work(B.ClassInstance[E].Start)
+            UtilityModules.Work(B.ClassInstance[E].Start)
     B.StartCollection()
 
-Start()
+try:
+    Start()
+except KeyboardInterrupt:
+    sys.exit(0)

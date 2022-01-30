@@ -115,12 +115,12 @@ class Bitmaps:
     def AlterBitmap(self, BitmapPacket, AlterationPacket, Offset = [0,0]):
         VerticalPosition = 0
         HorizontalPosition = 0
-        if len(AlterationPacket[0]) + Offset[0] > len(BitmapPacket[0]):
-            raise IndexError("Offset or alteration packet too large")
         for e in AlterationPacket:
             for E in AlterationPacket[VerticalPosition]:
                 if (P := AlterationPacket[VerticalPosition][HorizontalPosition]) == 0 or P == 1:
-                    BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] = 1 if AlterationPacket[VerticalPosition][HorizontalPosition] == 1 else 0
+                    try:
+                        BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] = 1 if AlterationPacket[VerticalPosition][HorizontalPosition] == 1 else 0
+                    except:break
                 HorizontalPosition += 1
             HorizontalPosition = 0
             VerticalPosition += 1
@@ -252,7 +252,12 @@ global Posting
 Posting = Packet_posting()
 
 #Module for multithreading
-class Working:
+class Work:
+
+    def __init__(self, target):
+        self.thread = threading.Thread(target=self.Timestamper, args=[target, target.__name__, self.FunctionClass(target)])
+        self.thread.daemon = True
+        self.thread.start()
 
     def Timestamper(self, target, funcname, funcclass):
         threadname = self.thread.name
@@ -274,10 +279,3 @@ class Working:
             else:
                 classes = list(c.__bases__) + classes
         return ""
-
-    def Work(self, target):
-        self.thread = threading.Thread(target=self.Timestamper,args=[target, target.__name__, self.FunctionClass(target)])
-        self.thread.start()
-
-global Worker
-Worker = Working()
