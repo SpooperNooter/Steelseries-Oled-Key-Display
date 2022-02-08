@@ -66,7 +66,7 @@ This script contains python classes, or "modules", for creating, altering, and s
   - `RoundCorners()` removes the very corners of the input bitmap, I dont know why I made this.
   - `ImportBitmapFromPng()` does what it says on the box, has a sheet to determine how to deal with non-opaque pixels
   - `Copy()` returns an exact replica of input bitmap, but creates it as a clean, new object, so that any actions performed upon the new bitmap do not occur to the original bitmap. 
-  - `AlterBitmap()` takes two bitmaps, a bitmap to alter, and another to alter the bitmap with. Also, you can provide an offset to apply the second bitmap from.
+  - `AlterBitmap()` takes two bitmaps, a bitmap to alter, and another to alter the bitmap with. Also, you can provide an offset to apply the second bitmap from and there is an option `Invert` to have the second bitmap "invert" the first. For example, if the bit being altered and corresponding bit on the altering map are both positive, the original will become negative. Note that this doesn't completely invert the base bitmap nor completely invert the alteration bitmap then apply it.
   - `CompressBitmap()` takes an input bitmap, compressing its bits into bytes, greatest bit first order. Note that you do not have to compress a bitmap before returning it to the main `PacketCollection` instance.
 
 - `Sprite`

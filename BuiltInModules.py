@@ -1,3 +1,5 @@
+import random
+
 import pynput.mouse
 from pynput import keyboard
 from pynput.mouse import Listener
@@ -162,7 +164,8 @@ class Keystroke_logging:
 class TestModule:
 
     def __init__(self, CollectionPath):
-        self.Base = self.Base = Bitmapping.ImportBitmapFromPNG("Animations/ShadowedKeyboard.png")
+        self.Base = Bitmapping.CreateEmptyBitmap(128,40,1)
+        self.Base = Bitmapping.AlterBitmap(self.Base, Bitmapping.CreateEmptyBitmap(10,10,1), (random.randint(0,100),random.randint(0,100)), True)
         self.Collection = CollectionPath
 
     def Start(self):

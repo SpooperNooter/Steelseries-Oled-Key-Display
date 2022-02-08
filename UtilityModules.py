@@ -28,8 +28,8 @@ class PacketCollection:
         except:
             if self.Path != self.Default:
                 self.OverrideQueue.append(P)
-                print("%s requested override, override %s in place, adding request to queue."
-                      % P[0:(len(P)-2)], self.Path[0:(len(self.Path)-2)])
+                print(P)
+                print("%s requested override, override %s in place, adding request to queue." % P[0:(len(P)-2)], self.Path[0:(len(self.Path)-2)])
             else:
                 self.Path = P
                 print("%s requested override, no current override in place" % P[0:(len(P)-2)])
@@ -112,14 +112,14 @@ class Bitmaps:
         return self.AlterBitmap(self.CreateEmptyBitmap(len(CopyTo[0]),len(CopyTo),2),CopyTo)
 
     #Alters the bitmap given with an alteration bitmap, at the offset given
-    def AlterBitmap(self, BitmapPacket, AlterationPacket, Offset = [0,0]):
+    def AlterBitmap(self, BitmapPacket, AlterationPacket, Offset=[0,0], Invert=False):
         VerticalPosition = 0
         HorizontalPosition = 0
         for e in AlterationPacket:
             for E in AlterationPacket[VerticalPosition]:
                 if (P := AlterationPacket[VerticalPosition][HorizontalPosition]) == 0 or P == 1:
                     try:
-                        BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] = 1 if AlterationPacket[VerticalPosition][HorizontalPosition] == 1 else 0
+                        BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] = (0 if BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] == 1 and Invert else 1) if AlterationPacket[VerticalPosition][HorizontalPosition] == 1 else 0
                     except:break
                 HorizontalPosition += 1
             HorizontalPosition = 0
