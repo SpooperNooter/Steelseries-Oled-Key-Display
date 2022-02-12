@@ -5,6 +5,11 @@ Should support any 128x40 OLED screen on a Steelseries Apex Keyboard (I've only 
 
 To run, clone / download this repo, install Python 3.8, `pip install -r requirements.txt`, and run `Oled_app.py`
 
+## Features
+
+- Displays keystrokes and mouse clicks
+- Afk screensaver
+
 ## Examples 
 
 Default keyboard theme:
