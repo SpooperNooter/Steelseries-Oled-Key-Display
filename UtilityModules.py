@@ -4,6 +4,7 @@ import requests
 import os
 import json
 from PIL import Image
+import math
 
 #Module for collecting finished Bitmaps
 class PacketCollection:
@@ -45,6 +46,11 @@ class PacketCollection:
             r = self.ClassInstance[self.Path].Return_base()
             if r == None:
                 r = self.ClassInstance[self.Path].Return_base()
+                for i in r:
+                    try:
+                        i.index(2)
+                        print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+                    except: pass
             if self.Path != self.Default:
                 for e in r:
                     try:
@@ -112,15 +118,15 @@ class Bitmaps:
         return self.AlterBitmap(self.CreateEmptyBitmap(len(CopyTo[0]),len(CopyTo),2),CopyTo)
 
     #Alters the bitmap given with an alteration bitmap, at the offset given
-    def AlterBitmap(self, BitmapPacket, AlterationPacket, Offset=[0,0], Invert=False):
+    def AlterBitmap(self, BitmapPacket, AlterationPacket, Offset=[0,0], Invert=False, FullAlter=False):
         VerticalPosition = 0
         HorizontalPosition = 0
         for e in AlterationPacket:
             for E in AlterationPacket[VerticalPosition]:
-                if (P := AlterationPacket[VerticalPosition][HorizontalPosition]) == 0 or P == 1:
+                if (P := AlterationPacket[VerticalPosition][HorizontalPosition]) == 0 or P == 1 or FullAlter:
                     try:
-                        BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] = (0 if BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] == 1 and Invert else 1) if AlterationPacket[VerticalPosition][HorizontalPosition] == 1 else 0
-                    except:break
+                        BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] = ((1 if BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] == 0 else p) if Invert and p != 2 else p) if (p := AlterationPacket[VerticalPosition][HorizontalPosition]) == 1 or FullAlter else 0
+                    except: break
                 HorizontalPosition += 1
             HorizontalPosition = 0
             VerticalPosition += 1
@@ -144,15 +150,21 @@ class Bitmaps:
 # Creates a class to manage sprite sheets
 class Sprite:
 
-    def __init__(self, *SpriteSheet, RepeatOnFinished = False, RepeatIndex = 0):
+    def __init__(self, *SpriteSheet, RepeatOnFinished = False, RepeatIndex = -1):
         self.Data = {i:json.load(open(f"Animations/{i}/info.json")) for i in SpriteSheet}
         for i in self.Data:
             if self.Data[i]["meta"]["app"] != "http://www.aseprite.org/": raise ImportError(f"Sprite sheet {self.Data.index(i)} is not in a valid format")
         self.SpriteSet = [I for e in SpriteSheet for I in self.SliceSheet(e)]
         self.FrameInfo = self.SpriteSet[0]["data"]
         self.FrameOn = -1
+        self.SpriteNumber = 0
         self.finished = False
         self.Repeat = RepeatOnFinished
+        self.RepeatIndex = RepeatIndex
+        a = 0
+        for i in self.SpriteSet:
+            a += i["duration"]
+        self.Length = math.floor(a/(1000/ModuleManaging.FPS))
 
     def SliceSheet(self, SpriteName):
         path = f"Animations/{SpriteName}/sheet.png"
@@ -161,34 +173,51 @@ class Sprite:
         Slices = [{"name": g, "duration": self.Data[SpriteName]["frames"][g]["duration"],"data": self.Data[SpriteName]["frames"][g],"bitmap" : [[round(sum(m[0:2]) / 765) if ShadingLevels[round((m := raw[((self.Data[SpriteName]["frames"][g]["frame"]["y"] + i) * sheetSize[0]) + I + self.Data[SpriteName]["frames"][g]["frame"]["x"]])[3] / 25.5)][i][I] != 2 else 2 for I in range(self.Data[SpriteName]["frames"][g]["frame"]["w"])] for i in range(self.Data[SpriteName]["frames"][g]["frame"]["h"])]} for g in self.Data[SpriteName]["frames"]]
         return Slices
 
-    def next(self,if_finished = False):
-        self.FrameOn += 1
+    def next(self,if_finished = False,reverse = False):
+        self.FrameOn += (1 if not reverse else -1)
+        if reverse and self.FrameOn < 0:
+            if not self.Repeat:
+                raise IndexError("Cannot get previous frame")
+            else:
+                self.FrameOn = self.Length*1
         b = self.FrameOn*1
         for i in self.SpriteSet:
             b -= (i["duration"]/(1000/ModuleManaging.FPS))
             if b <= 0:
+                self.SpriteNumber = self.SpriteSet.index(i)
                 self.FrameInfo = i["data"]
                 if i == self.SpriteSet[len(self.SpriteSet)-1]:
                     self.finished = True
                     if self.Repeat:
-                        self.FrameOn = -1
+                        self.FrameOn = self.RepeatIndex
                 else: self.finished = False
                 return i["bitmap"]
         self.finished = True
         if self.Repeat:
-            self.FrameOn = -1
+            self.FrameOn = self.RepeatIndex
         else:
             self.FrameInfo = None
             return if_finished
 
     def seek(self,index):
-        b = index+1
+        self.FrameOn = index
+        b = self.FrameOn * 1
         for i in self.SpriteSet:
-            b -= round(i["duration"]/round(1000/ModuleManaging.FPS))
+            b -= (i["duration"] / (1000 / ModuleManaging.FPS))
             if b <= 0:
-                self.FrameOn = self.SpriteSet.index(i)
+                self.SpriteNumber = self.SpriteSet.index(i)
+                self.FrameInfo = i["data"]
+                self.finished = i == self.SpriteSet[len(self.SpriteSet) - 1]
                 return i["bitmap"]
         raise IndexError(f"index {index} does not exist in SpriteSet")
+
+    def seekSprite(self,index):
+        if self.SpriteNumber == index:
+            return self.seek(self.FrameOn)
+        self.reset()
+        while self.SpriteNumber != index:
+            b = self.next()
+        return b
 
     def reset(self):
         self.FrameOn = -1

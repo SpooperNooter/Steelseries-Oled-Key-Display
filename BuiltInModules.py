@@ -1,11 +1,14 @@
 import random
-
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 import pynput.mouse
 from pynput import keyboard
 from pynput.mouse import Listener
 import UtilityModules
 import time
 import ctypes
+import math
 
 Bitmapping = UtilityModules.Bitmaps()
 
@@ -104,11 +107,21 @@ class Keystroke_logging:
         self.mouse = pynput.mouse.Controller()
         self.screensize = (ctypes.windll.user32.GetSystemMetrics(0), ctypes.windll.user32.GetSystemMetrics(1))
         self.maxGyro = (2,1)
+        devices = AudioUtilities.GetSpeakers()
+        interface = devices.Activate(
+            IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+        self.volume = cast(interface, POINTER(IAudioEndpointVolume))
+        self.PastVolumeLevel = self.volume.GetMasterVolumeLevelScalar() * 100
+        self.VolumeTransition = UtilityModules.Sprite("VolumeTransition")
+        self.VolumeBuddy = UtilityModules.Sprite("VolumeBuddy", RepeatOnFinished=True, RepeatIndex=77)
+        self.VolumeBar = UtilityModules.Sprite("VolumeBar")
+        self.VolumeTime = 0
 
     def Return_base(self):
         if self.Collection.CurrentFrame == self.Collection.FPS:
             #print(self.WPM*60)
             self.WPM = 0
+        #render keystrokes and mouse clicks
         for i in self.KeyDictionary.values():
             a = None
             if i.Mode == "release":
@@ -125,6 +138,44 @@ class Keystroke_logging:
                     a = i.Sprite.next()
             if a != None:
                 self.Base = Bitmapping.AlterBitmap(self.Base, a, i.Offset)
+        #start volume display if volume level was altered
+        if (p := self.volume.GetMasterVolumeLevelScalar() * 100) != self.PastVolumeLevel or self.VolumeTime != 5*self.Collection.FPS and self.VolumeTime != 0:
+            self.PastVolumeLevel = p
+            self.VolumeTime += 1
+            c = self.VolumeBuddy.next()
+            if self.VolumeBuddy.SpriteNumber > (s := (math.floor(self.PastVolumeLevel/33)+1)*14-1) and self.VolumeBuddy.SpriteNumber % 14 == 0:
+                c = self.VolumeBuddy.seekSprite(s-13)
+            elif self.PastVolumeLevel == 100:
+                self.VolumeBuddy.seekSprite(41)
+            if not self.VolumeTransition.SpriteNumber >= 14:
+                self.VolumeTime = 1
+                C = Bitmapping.AlterBitmap(Bitmapping.Copy(c), self.VolumeTransition.next(), Invert=True,FullAlter=True)
+                return Bitmapping.AlterBitmap(Bitmapping.Copy(self.Base), C)
+            else:
+                C = Bitmapping.AlterBitmap(Bitmapping.Copy(c), self.VolumeTransition.seek(self.VolumeTransition.FrameOn), Invert=True, FullAlter=True)
+                if (l:=round(self.PastVolumeLevel/10)) > round((self.VolumeBar.FrameOn-1)/3):
+                    self.VolumeTime = 1
+                    b = self.VolumeBar.next()
+                elif l < round((self.VolumeBar.FrameOn+1)/3):
+                    self.VolumeTime = 1
+                    b = self.VolumeBar.next(reverse=True)
+                else:
+                    b = self.VolumeBar.seek(self.VolumeBar.FrameOn)
+                return Bitmapping.AlterBitmap(C, b, (44, 15))
+        elif not self.VolumeTransition.finished and self.VolumeTransition.FrameOn > 0:
+            c = self.VolumeBuddy.next()
+            if self.VolumeBuddy.SpriteNumber > (s := (math.floor(self.PastVolumeLevel / 33) + 1) * 14 - 1) and self.VolumeBuddy.SpriteNumber % 14 == 0:
+                c = self.VolumeBuddy.seekSprite(s - 13)
+            if self.VolumeBar.FrameOn != 0:
+                C = Bitmapping.AlterBitmap(Bitmapping.Copy(c), self.VolumeTransition.seek(self.VolumeTransition.FrameOn), Invert=True, FullAlter=True)
+                return Bitmapping.AlterBitmap(C, self.VolumeBar.next(reverse=True), (44,15))
+            if self.VolumeBar.FrameOn == 0:
+                #print(self.VolumeTransition.SpriteNumber)
+                return Bitmapping.AlterBitmap(Bitmapping.Copy(self.Base),Bitmapping.AlterBitmap(Bitmapping.Copy(c), self.VolumeTransition.next(), Invert=True, FullAlter=True))
+        elif self.VolumeTime != 0:
+            self.VolumeTime = 0
+            self.VolumeTransition.reset()
+            self.VolumeBar.reset()
         #return Bitmapping.AlterBitmap(Bitmapping.Copy(self.Background),self.Base,(round(self.mouse.position[0]/((s := self.screensize[0]/self.maxGyro[0]))),round(self.mouse.position[1]/((s := self.screensize[0]/self.maxGyro[1])))))
         return self.Base
 
