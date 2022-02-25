@@ -1,7 +1,7 @@
 # Steelseries-Oled-Key-Display
 (wip) Very rough program to display pressed keystrokes on one of steelseries apex keyboards, does also have a afk animation to help prevent screen burn in. (Default afk time set to 30 secs, can change that in code)
 
-Should support any 128x40 OLED screen on a Steelseries Apex Keyboard (I've only tested it on my Apex 7)
+Should support any 128x40 OLED screen on a Steelseries Apex Keyboard (I've only tested it on my Apex 7), some features, like volume monitoring, are windows only.
 
 To run, clone / download this repo, install Python 3.8, `pip install -r requirements.txt`, and run `Oled_app.py`
 
@@ -9,6 +9,7 @@ To run, clone / download this repo, install Python 3.8, `pip install -r requirem
 
 - Displays keystrokes and mouse clicks
 - Afk screensaver
+- Windows volume level display
 
 ## Examples 
 
