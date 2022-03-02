@@ -1,1 +1,3 @@
 venv/
+**/*.aseprite
+**/*.ase

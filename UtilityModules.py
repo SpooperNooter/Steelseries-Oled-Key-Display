@@ -4,7 +4,9 @@ import requests
 import os
 import json
 from PIL import Image
+import PIL
 import math
+import numpy
 
 #Module for collecting finished Bitmaps
 class PacketCollection:
@@ -150,12 +152,26 @@ class Bitmaps:
 # Creates a class to manage sprite sheets
 class Sprite:
 
+    class Frame:
+        def __init__(self,name,duration,bitmap):
+            self.name = name
+            self.duration = duration
+            self.bitmap = bitmap
+
     def __init__(self, *SpriteSheet, RepeatOnFinished = False, RepeatIndex = -1):
-        self.Data = {i:json.load(open(f"Animations/{i}/info.json")) for i in SpriteSheet}
-        for i in self.Data:
-            if self.Data[i]["meta"]["app"] != "http://www.aseprite.org/": raise ImportError(f"Sprite sheet {self.Data.index(i)} is not in a valid format")
-        self.SpriteSet = [I for e in SpriteSheet for I in self.SliceSheet(e)]
-        self.FrameInfo = self.SpriteSet[0]["data"]
+        #self.UsableFormats = {".gif": self.sliceGIF}
+        #self.SpriteSet = []
+        #for i in SpriteSheet:
+        #    try:
+        #        self.SpriteSet.append(self.UsableFormats[os.path.splitext(i)[1]](i))
+        #    except SyntaxError:
+        #        raise SyntaxError(f"Error loading file, path {i} likely contains escape sequences")
+        #    except KeyError:
+        #        raise KeyError(f"{os.path.splitext(i)[1]} is not a supported filetype")
+
+        #for i in self.Data:
+        #    if self.Data[i]["meta"]["app"] != "http://www.aseprite.org/": raise ImportError(f"Sprite sheet {self.Data.index(i)} is not in a valid format")
+        self.SpriteSet = [I for e in SpriteSheet for I in self.sliceAseDir(e)]
         self.FrameOn = -1
         self.SpriteNumber = 0
         self.finished = False
@@ -163,14 +179,36 @@ class Sprite:
         self.RepeatIndex = RepeatIndex
         a = 0
         for i in self.SpriteSet:
-            a += i["duration"]
+            a += i.duration
         self.Length = math.floor(a/(1000/ModuleManaging.FPS))
 
-    def SliceSheet(self, SpriteName):
-        path = f"Animations/{SpriteName}/sheet.png"
-        raw = list((Image.open(path)).convert('RGBA').getdata())
-        sheetSize = Image.open(path).size
-        Slices = [{"name": g, "duration": self.Data[SpriteName]["frames"][g]["duration"],"data": self.Data[SpriteName]["frames"][g],"bitmap" : [[round(sum(m[0:2]) / 765) if ShadingLevels[round((m := raw[((self.Data[SpriteName]["frames"][g]["frame"]["y"] + i) * sheetSize[0]) + I + self.Data[SpriteName]["frames"][g]["frame"]["x"]])[3] / 25.5)][i][I] != 2 else 2 for I in range(self.Data[SpriteName]["frames"][g]["frame"]["w"])] for i in range(self.Data[SpriteName]["frames"][g]["frame"]["h"])]} for g in self.Data[SpriteName]["frames"]]
+    def sliceGIF(self, filename):
+        pilIm = PIL.Image.open(filename)
+        pilIm.seek(0)
+        images = []
+        try:
+            while True:
+                # Get image as numpy array
+                tmp = pilIm.convert()  # Make without palette
+                a = numpy.asarray(tmp)
+                if len(a.shape) == 0:
+                    raise MemoryError("Too little memory to convert PIL image to array")
+                # Store, and next
+                images.append(a)
+                pilIm.seek(pilIm.tell() + 1)
+        except EOFError:
+            pass
+        images2 = images
+        images = []
+        for im in images2:
+            images.append(PIL.Image.fromarray(im))
+        #return images
+
+    def sliceAseDir(self, DirPath):
+        data = json.load(open(f"{DirPath}/info.json"))
+        raw = list((Image.open(f"{DirPath}/sheet.png")).convert('RGBA').getdata())
+        sheetSize = Image.open(f"{DirPath}/sheet.png").size
+        Slices = [self.Frame(g, data["frames"][g]["duration"], [[round(sum(m[0:2]) / 765) if ShadingLevels[round((m := raw[((data["frames"][g]["frame"]["y"] + i) * sheetSize[0]) + I + data["frames"][g]["frame"]["x"]])[3] / 25.5)][i][I] != 2 else 2 for I in range(data["frames"][g]["frame"]["w"])] for i in range(data["frames"][g]["frame"]["h"])]) for g in data["frames"]]
         return Slices
 
     def next(self,if_finished = False,reverse = False):
@@ -182,16 +220,15 @@ class Sprite:
                 self.FrameOn = self.Length*1
         b = self.FrameOn*1
         for i in self.SpriteSet:
-            b -= (i["duration"]/(1000/ModuleManaging.FPS))
+            b -= (i.duration/(1000/ModuleManaging.FPS))
             if b <= 0:
                 self.SpriteNumber = self.SpriteSet.index(i)
-                self.FrameInfo = i["data"]
                 if i == self.SpriteSet[len(self.SpriteSet)-1]:
                     self.finished = True
                     if self.Repeat:
                         self.FrameOn = self.RepeatIndex
                 else: self.finished = False
-                return i["bitmap"]
+                return i.bitmap
         self.finished = True
         if self.Repeat:
             self.FrameOn = self.RepeatIndex
@@ -203,12 +240,11 @@ class Sprite:
         self.FrameOn = index
         b = self.FrameOn * 1
         for i in self.SpriteSet:
-            b -= (i["duration"] / (1000 / ModuleManaging.FPS))
+            b -= (i.duration/(1000/ModuleManaging.FPS))
             if b <= 0:
                 self.SpriteNumber = self.SpriteSet.index(i)
-                self.FrameInfo = i["data"]
                 self.finished = i == self.SpriteSet[len(self.SpriteSet) - 1]
-                return i["bitmap"]
+                return i.bitmap
         raise IndexError(f"index {index} does not exist in SpriteSet")
 
     def seekSprite(self,index):

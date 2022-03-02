@@ -21,10 +21,10 @@ class Afk:
         self.DelayBetweenRp = 5
         self.TimeInDelay = 0
         self.BetweenRp = Bitmapping.CreateEmptyBitmap(128,40)
-        self.Transition = 'LaggedSlideFade'
-        self.StartAnimation = 'RoundEyesInvert'
-        self.RepeatAnimation = 'RepeatBreath'
-        self.EndingTransition = 'ReverseSlideFade'
+        self.Transition = 'Animations/LaggedSlideFade'
+        self.StartAnimation = 'Animations/RoundEyesInvert'
+        self.RepeatAnimation = 'Animations/RepeatBreath'
+        self.EndingTransition = 'Animations/ReverseSlideFade'
         self.Startup = UtilityModules.Sprite(self.Transition,self.StartAnimation)
         self.Rp = UtilityModules.Sprite(self.RepeatAnimation, RepeatOnFinished=True)
         self.End = UtilityModules.Sprite(self.EndingTransition)
@@ -96,14 +96,14 @@ class Keystroke_logging:
                               "F": (48,11), "G": (59,11), "H": (70,11), "J": (81,11), "K": (92,11), "L": (103,11),
                               "Z": (20,21), "X": (31,21), "C": (42,21), "V": (53,21), "B": (64,21), "N": (75,21),
                               "M": (86,21), "Key.space": (27,31)}
-        self.KeyDictionary = {i:(self.Keydata(i, a[i], UtilityModules.Sprite(f"{self.KeyboardSet}/Button")) if i != "Key.space" else self.Keydata(i, a[i], UtilityModules.Sprite(f"{self.KeyboardSet}/Spacebar"))) for i in a}
+        self.KeyDictionary = {i:(self.Keydata(i, a[i], UtilityModules.Sprite(f"Animations/{self.KeyboardSet}/Button")) if i != "Key.space" else self.Keydata(i, a[i], UtilityModules.Sprite(f"Animations/{self.KeyboardSet}/Spacebar"))) for i in a}
         self.CtrlDictionary = {"\x11" : "Q", "\x17": "W", "\x05" : "E", "\x12" : "R", "\x14": "T", "\x19" : "Y",
                                "\x15" : "U", "\t" : "I", "\x0f" : "O", "\x10" : "P", "\x01" : "A", "\x13" : "S",
                                "\x04" : "D", "\x06" : "F", "\x07" : "G", "\x08" : "H", "\n" : "J", "\x0b" : "K",
                                "\x0c" : "L", "\x1a" : "Z", "\x18" : "X", "\x03" : "C", "\x16": "V", "\x02" : "B",
                                "\x0e" : "N", "\r" : "M"}
-        self.KeyDictionary["Button.left"] = self.Keydata("Button.left",(0,0),UtilityModules.Sprite("LeftClick"),3)
-        self.KeyDictionary["Button.right"] = self.Keydata("Button.right",(122,0),UtilityModules.Sprite("RightClick"),3)
+        self.KeyDictionary["Button.left"] = self.Keydata("Button.left",(0,0),UtilityModules.Sprite("Animations/LeftClick"),3)
+        self.KeyDictionary["Button.right"] = self.Keydata("Button.right",(122,0),UtilityModules.Sprite("Animations/RightClick"),3)
         self.mouse = pynput.mouse.Controller()
         self.screensize = (ctypes.windll.user32.GetSystemMetrics(0), ctypes.windll.user32.GetSystemMetrics(1))
         self.maxGyro = (2,1)
@@ -112,9 +112,9 @@ class Keystroke_logging:
             IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
         self.volume = cast(interface, POINTER(IAudioEndpointVolume))
         self.PastVolumeLevel = self.volume.GetMasterVolumeLevelScalar() * 100
-        self.VolumeTransition = UtilityModules.Sprite("VolumeTransition")
-        self.VolumeBuddy = UtilityModules.Sprite("VolumeBuddy", RepeatOnFinished=True, RepeatIndex=77)
-        self.VolumeBar = UtilityModules.Sprite("VolumeBar")
+        self.VolumeTransition = UtilityModules.Sprite("Animations/VolumeTransition")
+        self.VolumeBuddy = UtilityModules.Sprite("Animations/VolumeBuddy", RepeatOnFinished=True, RepeatIndex=77)
+        self.VolumeBar = UtilityModules.Sprite("Animations/VolumeBar")
         self.VolumeTime = 0
 
     def Return_base(self):
