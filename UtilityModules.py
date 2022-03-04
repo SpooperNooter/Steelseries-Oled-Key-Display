@@ -4,9 +4,8 @@ import requests
 import os
 import json
 from PIL import Image
-import PIL
 import math
-import numpy
+import trace
 
 #Module for collecting finished Bitmaps
 class PacketCollection:
@@ -51,7 +50,6 @@ class PacketCollection:
                 for i in r:
                     try:
                         i.index(2)
-                        print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
                     except: pass
             if self.Path != self.Default:
                 for e in r:
@@ -158,20 +156,17 @@ class Sprite:
             self.duration = duration
             self.bitmap = bitmap
 
-    def __init__(self, *SpriteSheet, RepeatOnFinished = False, RepeatIndex = -1):
-        #self.UsableFormats = {".gif": self.sliceGIF}
-        #self.SpriteSet = []
-        #for i in SpriteSheet:
-        #    try:
-        #        self.SpriteSet.append(self.UsableFormats[os.path.splitext(i)[1]](i))
-        #    except SyntaxError:
-        #        raise SyntaxError(f"Error loading file, path {i} likely contains escape sequences")
-        #    except KeyError:
-        #        raise KeyError(f"{os.path.splitext(i)[1]} is not a supported filetype")
-
-        #for i in self.Data:
-        #    if self.Data[i]["meta"]["app"] != "http://www.aseprite.org/": raise ImportError(f"Sprite sheet {self.Data.index(i)} is not in a valid format")
-        self.SpriteSet = [I for e in SpriteSheet for I in self.sliceAseDir(e)]
+    def __init__(self, *SpritePaths, RepeatOnFinished = False, RepeatIndex = -1):
+        self.UsableFormats = {"": self.sliceAseDir, ".gif": self.sliceGIF}
+        A = []
+        for i in SpritePaths:
+            try:
+                A.append(self.UsableFormats[os.path.splitext(i)[1]](i))
+            except SyntaxError:
+                raise SyntaxError(f"Error loading file, path {i} likely contains escape sequences")
+            except KeyError:
+                raise KeyError(f"{os.path.splitext(i)[1]} is not a supported filetype")
+        self.SpriteSet = [I for e in A for I in e]
         self.FrameOn = -1
         self.SpriteNumber = 0
         self.finished = False
@@ -183,32 +178,24 @@ class Sprite:
         self.Length = math.floor(a/(1000/ModuleManaging.FPS))
 
     def sliceGIF(self, filename):
-        pilIm = PIL.Image.open(filename)
-        pilIm.seek(0)
-        images = []
-        try:
-            while True:
-                # Get image as numpy array
-                tmp = pilIm.convert()  # Make without palette
-                a = numpy.asarray(tmp)
-                if len(a.shape) == 0:
-                    raise MemoryError("Too little memory to convert PIL image to array")
-                # Store, and next
-                images.append(a)
-                pilIm.seek(pilIm.tell() + 1)
-        except EOFError:
-            pass
-        images2 = images
-        images = []
-        for im in images2:
-            images.append(PIL.Image.fromarray(im))
-        #return images
+        im = Image.open(filename)
+        name = os.path.basename(filename)
+        frames = im.n_frames
+        Slices = []
+        for z in range(frames):
+            im.seek(z)
+            rgb_im = im.convert('RGBA')
+            G = list(rgb_im.getdata())
+            a = self.Frame(f"{name}{z}", im.info['duration'], [[round(sum(B[:3])/765) if ShadingLevels[round((B:=G[(y*im.width)+x])[3]/25.5)][y][x] != 2 else 2 for x in range(im.width)]for y in range(im.height)])
+            Slices.append(a)
+        return Slices
+
 
     def sliceAseDir(self, DirPath):
         data = json.load(open(f"{DirPath}/info.json"))
         raw = list((Image.open(f"{DirPath}/sheet.png")).convert('RGBA').getdata())
         sheetSize = Image.open(f"{DirPath}/sheet.png").size
-        Slices = [self.Frame(g, data["frames"][g]["duration"], [[round(sum(m[0:2]) / 765) if ShadingLevels[round((m := raw[((data["frames"][g]["frame"]["y"] + i) * sheetSize[0]) + I + data["frames"][g]["frame"]["x"]])[3] / 25.5)][i][I] != 2 else 2 for I in range(data["frames"][g]["frame"]["w"])] for i in range(data["frames"][g]["frame"]["h"])]) for g in data["frames"]]
+        Slices = [self.Frame(g, data["frames"][g]["duration"], [[round(sum(m[:3]) / 765) if ShadingLevels[round((m := raw[((data["frames"][g]["frame"]["y"] + i) * sheetSize[0]) + I + data["frames"][g]["frame"]["x"]])[3] / 25.5)][i][I] != 2 else 2 for I in range(data["frames"][g]["frame"]["w"])] for i in range(data["frames"][g]["frame"]["h"])]) for g in data["frames"]]
         return Slices
 
     def next(self,if_finished = False,reverse = False):
