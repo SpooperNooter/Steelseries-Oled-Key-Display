@@ -78,10 +78,13 @@ This script contains python classes, or "modules", for creating, altering, and s
   - `CompressBitmap()` takes an input bitmap, compressing its bits into bytes, greatest bit first order. Note that you do not have to compress a bitmap before returning it to the main `PacketCollection` instance.
 
 - `Sprite`
-  - My solution for using animations, takes the name of a directory. Within the directory, should be two files, sheet.png, a spritesheet image, and info.json, information about the sprite sheet and how to "slice" it.
-  - Examples:
+  - My solution for using animations. Takes either a gif or the name of a directory. Within a directory, there should be two files, sheet.png, a spritesheet image, and info.json, information about the sprite sheet.
+  - When calling class, input one or more sprite directories, if more than one, the sheets with be combined into one list. There is also the option RepeatOnFinish, which by default is false.
+  - Contains `Frame` class, which holds bitmap, duration, and name variables.
+  - Directory slicing example:
 
-  (Fade transition)
+
+  (Sheet png, "Fade Transition")
 
   <img src="Animations/LaggedSlideFade/sheet.png">
 
@@ -291,8 +294,9 @@ This script contains python classes, or "modules", for creating, altering, and s
  }
 }
 ```
-- When calling class, input one or more sprite directories, if more than one, the sheets with be combined into one list. There is also the option RepeatOnFinish, by default is false.
-  - `SliceSheet()` is to be used by `Sprite` class __init__, creates a bitmap from directory.
+- `Sprite` cont.
+  - `sliceAseDir` is to be used by `Sprite` class `__init__`, creates a set of `Frame` class objects from a directory.
+  - `sliceGIF` is also to be used by `Sprite` class `__init__`, creates a set of `Frame` class objects from a gif.
   - `next()` mimics the built in python command, takes optional value to return if list is finished and RepeatOnFinish is false. If RepeatOnFinish is true, `next()` loops back to the start.
   - `seek()` returns bitmap at list index.
   - `reset()` sets index `next()` was on to the first index.
