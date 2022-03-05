@@ -68,20 +68,36 @@ This script contains python classes, or "modules", for creating, altering, and s
   - `RequestOverride()` changes the class requested from, if an override was previously requested and not yet relinquished, adds request to a queue.
   - `EndOverride()` sets path to default.
 
-- `Bitmaps`
-  - Basic bitmap creation and manupulation
-  - `CreateEmptyBitmap()` creates a bitmap according to input width and height, all intergers are set to input IntValue, default to 0.
-  - `RoundCorners()` removes the very corners of the input bitmap, I dont know why I made this.
-  - `ImportBitmapFromPng()` does what it says on the box, has a sheet to determine how to deal with non-opaque pixels
-  - `Copy()` returns an exact replica of input bitmap, but creates it as a clean, new object, so that any actions performed upon the new bitmap do not occur to the original bitmap. 
-  - `AlterBitmap()` takes two bitmaps, a bitmap to alter, and another to alter the bitmap with. Also, you can provide an offset to apply the second bitmap from and there is an option `Invert` to have the second bitmap "invert" the first. For example, if the bit being altered and corresponding bit on the altering map are both positive, the original will become negative. Note that this doesn't completely invert the base bitmap nor completely invert the alteration bitmap then apply it.
-  - `CompressBitmap()` takes an input bitmap, compressing its bits into bytes, greatest bit first order. Note that you do not have to compress a bitmap before returning it to the main `PacketCollection` instance.
+- `Bitmap`
+  - Basic bitmap creation and manipulation, after created, it contains the variable `bitmap`, which is a raw list of lists. The functions below affect an instantiated `Bitmap` class.
 
-- `Sprite`
-  - My solution for using animations. Takes either a gif or the name of a directory. Within a directory, there should be two files, sheet.png, a spritesheet image, and info.json, information about the sprite sheet.
-  - When calling class, input one or more sprite directories, if more than one, the sheets with be combined into one list. There is also the option RepeatOnFinish, which by default is false.
-  - Contains `Frame` class, which holds bitmap, duration, and name variables.
-  - Directory slicing example:
+  For example:
+```ruby
+#If I instantiate a Bitmap class as a:
+
+a = Bitmap()
+
+#a will then contain Copy, AlterBitmap, and CompressBitmap
+
+a.Copy()
+a.AlterBitmap(/*bitmap to alter with*/)
+a.CompressBitmap()
+
+```
+  - `Bitmap` cont.
+    - When instantiating this class, you can choose to create a bitmap from a number of ways. 
+    - Passing two integers, width and height will create a bitmap with given width and height, you can optionally pass a third integer to fill the bitmap with, by default the bitmap is filled with 0s.
+    - Passing a filepath to `FromPng` will create bitmap from the filepath.
+    - Passing a list of lists bitmap or `Bitmap` class instance to `FromBitmap` will copy the bitmap
+    - `Copy()` returns an exact replica of the existing `Bitmap` instance, also as a `Bitmap` instance, but creates it as a clean, new object, so that any actions performed upon the new bitmap do not occur to the original bitmap. 
+    - `AlterBitmap()` takes a bitmap or `Bitmap` instance to alter the `bitmap` variable within an existing `Bitmap` instance with. You can also provide an offset to apply the altering bitmap from, and there is an option `Invert` to have the second bitmap "invert" the first. For example, if the bit being altered and corresponding bit on the altering bitmap are both 1s(displayed as white), the bit being altered will change to 0 (displayed as black). Note that this doesn't completely invert the base bitmap nor completely invert the alteration bitmap then apply it.
+    - `CompressBitmap()` returns the `bitmap` variable within a `Bitmap` instance, compressing its bits into bytes, greatest bit first order. Note that the returned object is a list of lists and not a `Bitmap` instance. Also, that you do not have to compress a bitmap before returning it to the main `PacketCollection` instance.
+
+  - `Sprite`
+    - My solution for using animations. Takes either a gif or the name of a directory. Within a directory, there should be two files, sheet.png, a spritesheet image, and info.json, information about the sprite sheet.
+    - When calling class, input one or more sprite directories, if more than one, the sheets with be combined into one list. There is also the option RepeatOnFinish, which by default is false.
+    - Contains `Frame` class, which holds bitmap, duration, and name variables.
+    - Directory slicing example:
 
 
   (Sheet png, "Fade Transition")
