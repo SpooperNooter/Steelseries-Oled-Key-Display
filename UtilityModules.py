@@ -47,24 +47,22 @@ class PacketCollection:
             r = self.ClassInstance[self.Path].Return_base()
             if r == None:
                 r = self.ClassInstance[self.Path].Return_base()
-                for i in r:
-                    try:
-                        i.index(2)
-                    except: pass
-            if self.Path != self.Default:
-                for e in r:
-                    try:
-                        e.index(2)
-                        r = Bitmapping.AlterBitmap(Bitmapping.Copy(self.ClassInstance[self.Default].Return_base()), r, [0,0])
-                        break
-                    except: pass
-            R = Bitmapping.CompressBitmap(r)
+            if type(r) == type([]):
+                r = Bitmap(FromBitmap=r)
+            R = r.Copy()
+            for e in R.bitmap:
+                try:
+                    e.index(2)
+                    R = self.ClassInstance[self.Default].Return_base().Copy()
+                    R.AlterBitmap(r)
+                    break
+                except: pass
             metadata = {"game": "REACTIVE_KEYBOARD_WIDGET",
                         "event": "KEY_UPDATE",
                         "data": {
                             "value": Posting.value_lottery(),
                             "frame": {
-                                "image-data": R
+                                "image-data": R.CompressBitmap()
                             }}}
             Posting.Post(metadata, "/game_event")
             if self.CurrentFrame < self.FPS: self.CurrentFrame += 1
@@ -83,61 +81,46 @@ ShadingLevels = [[[k if (k := round(sum(L[((g[1] + i) * 1920) + g[0] + I][0:2]) 
 
 
 #Module for creating raw bitmaps
-class Bitmaps:
+class Bitmap:
 
-    #CreateEmptyBitmap and RoundCorners are for primitive bitmap creation and manipulation, probably should only be used for testing
-    #Creates a bitmap with height and value according to input, with all positions as IntValue
-    def CreateEmptyBitmap(self, Width, Height, IntValue = 0):
-        EmptyBitmap = []
-        EmptyLine = []
-        for e in range(Height):
-            for e in range(Width):
-                EmptyLine.append(IntValue)
-            EmptyBitmap.append(EmptyLine)
-            EmptyLine = []
-        return EmptyBitmap
+    def __init__(self, Width = None, Height = None, IntValue = 0, FromPng = None, FromBitmap = None):
+        self.bitmap = None
+        if Width != None and Height != None:
+            self.bitmap = [[IntValue for e in range(Width)]for e in range(Height)]
+        elif FromPng != None:
+            if (a := os.path.splitext(FromPng)[1]) == ".png":
+                a = list((Image.open(FromPng)).convert('RGBA').getdata())
+                BitmapSize = Image.open(FromPng).size
+                self.bitmap = [[round(sum(B[0:2]) / 765) if ShadingLevels[round((B := a[(i * BitmapSize[0]) + I])[3] / 25.5)][i][I] != 2 else 2 for I in range(BitmapSize[0])] for i in range(BitmapSize[1])]
+            else:
+                raise ImportError(f"File extension {a} not supported, only .png")
+        elif FromBitmap != None:
+            self.bitmap = FromBitmap
+        else:
+            raise SyntaxError("Not enough information to create bitmap")
 
-    #Takes off the corners of the bitmap
-    def RoundCorners(self,Bitmap):
-        Bitmap[0][0] = 2
-        Bitmap[0][(len(Bitmap[0])-1)] = 2
-        Bitmap[(len(Bitmap)-1)][0] = 2
-        Bitmap[(len(Bitmap)-1)][(len(Bitmap[0])-1)] = 2
-        return Bitmap
+    def Copy(self):
+        return Bitmap(FromBitmap=[[(I*1)for I in i]for i in self.bitmap])
 
-    #Import an animation sheet png, convert it into a RGBA standard, then slice it documented size
-    def ImportBitmapFromPNG(self,FilePath):
-        try: a = list((Image.open(FilePath)).convert('RGBA').getdata())
-        except Exception as Except: raise ImportError("Error with passed input variable, %s" % Except)
-        BitmapSize = Image.open(FilePath).size
-        Bitmap = [[round(sum(B[0:2])/765) if ShadingLevels[round((B := a[(i*BitmapSize[0])+I])[3]/25.5)][i][I] != 2 else 2 for I in range(BitmapSize[0])] for i in range(BitmapSize[1])]
-        return Bitmap
-
-    #Creates exact copy of bitmap, I created because of how python handles variables
-    def Copy(self,CopyTo):
-        return self.AlterBitmap(self.CreateEmptyBitmap(len(CopyTo[0]),len(CopyTo),2),CopyTo)
-
-    #Alters the bitmap given with an alteration bitmap, at the offset given
-    def AlterBitmap(self, BitmapPacket, AlterationPacket, Offset=[0,0], Invert=False, FullAlter=False):
-        VerticalPosition = 0
-        HorizontalPosition = 0
-        for e in AlterationPacket:
-            for E in AlterationPacket[VerticalPosition]:
-                if (P := AlterationPacket[VerticalPosition][HorizontalPosition]) == 0 or P == 1 or FullAlter:
+    def AlterBitmap(self, AlterationPacket, Offset=[0,0], Invert=False, FullAlter=False):
+        try:
+            if AlterationPacket.__class__.__name__ == "Bitmap" or "Frame":
+                Alteration = AlterationPacket.bitmap
+            else:
+                raise SyntaxError("AlterationPacket cannot be a class")
+        except: Alteration = AlterationPacket
+        for e in range(len(Alteration)):
+            for E in range(len(Alteration[e])):
+                if (P := Alteration[e][E]) == 0 or P == 1 or FullAlter:
                     try:
-                        BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] = ((1 if BitmapPacket[VerticalPosition + Offset[1]][HorizontalPosition + Offset[0]] == 0 else p) if Invert and p != 2 else p) if (p := AlterationPacket[VerticalPosition][HorizontalPosition]) == 1 or FullAlter else 0
+                        self.bitmap[e + Offset[1]][E + Offset[0]] = ((1 if self.bitmap[e + Offset[1]][E + Offset[0]] == 0 else p) if Invert and p != 2 else p) if (p := Alteration[e][E]) == 1 or FullAlter else 0
                     except: break
-                HorizontalPosition += 1
-            HorizontalPosition = 0
-            VerticalPosition += 1
-        return BitmapPacket
 
-    #Creates one list from a 2d list, then convert it to greatest bit first byte order
-    def CompressBitmap(self,Bitmap):
+    def CompressBitmap(self):
         CompletedBitmap = []
         CompressedByte = 0
         BitDigit = 8
-        for a in Bitmap:
+        for a in self.bitmap:
             for e in a:
                 BitDigit -= 1
                 CompressedByte += (e*pow(2,BitDigit))
@@ -150,11 +133,11 @@ class Bitmaps:
 # Creates a class to manage sprite sheets
 class Sprite:
 
-    class Frame:
+    class Frame(Bitmap):
         def __init__(self,name,duration,bitmap):
+            super().__init__(FromBitmap=bitmap)
             self.name = name
             self.duration = duration
-            self.bitmap = bitmap
 
     def __init__(self, *SpritePaths, RepeatOnFinished = False, RepeatIndex = -1):
         self.UsableFormats = {"": self.sliceAseDir, ".gif": self.sliceGIF}
@@ -190,7 +173,6 @@ class Sprite:
             Slices.append(a)
         return Slices
 
-
     def sliceAseDir(self, DirPath):
         data = json.load(open(f"{DirPath}/info.json"))
         raw = list((Image.open(f"{DirPath}/sheet.png")).convert('RGBA').getdata())
@@ -215,7 +197,7 @@ class Sprite:
                     if self.Repeat:
                         self.FrameOn = self.RepeatIndex
                 else: self.finished = False
-                return i.bitmap
+                return i
         self.finished = True
         if self.Repeat:
             self.FrameOn = self.RepeatIndex
@@ -231,7 +213,7 @@ class Sprite:
             if b <= 0:
                 self.SpriteNumber = self.SpriteSet.index(i)
                 self.finished = i == self.SpriteSet[len(self.SpriteSet) - 1]
-                return i.bitmap
+                return i
         raise IndexError(f"index {index} does not exist in SpriteSet")
 
     def seekSprite(self,index):
@@ -248,8 +230,6 @@ class Sprite:
 
 # Module for posting data packets and containing app metadata
 class Packet_posting:
-    global Bitmapping
-    Bitmapping = Bitmaps()
 
     def __init__(self,A = ""):
         try:
@@ -276,7 +256,7 @@ class Packet_posting:
                     "handlers": [{
                         "datas": [{
                             "has-text": False,
-                            "image-data": Bitmapping.CompressBitmap(Bitmapping.CreateEmptyBitmap(128,40,0))}],
+                            "image-data": Bitmap(128,40,0).CompressBitmap()}],
                         "device-type": "screened-128x40",
                         "mode": "screen",
                         "zone": "one"}]}
@@ -330,4 +310,4 @@ class Work:
                 return "%s." % (P := str(c))[8:len(P)-2]
             else:
                 classes = list(c.__bases__) + classes
-        return ""
+        return None

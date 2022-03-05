@@ -13,7 +13,6 @@ along with a multithreading module for simple working
 """
 
 Posting = UtilityModules.Packet_posting()
-Bitmapping = UtilityModules.Bitmaps()
 Modules = [UtilityModules.Packet_posting,BuiltInModules.Keystroke_logging,BuiltInModules.Afk]
 
 def Start():
