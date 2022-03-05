@@ -95,7 +95,11 @@ class Bitmap:
             else:
                 raise ImportError(f"File extension {a} not supported, only .png")
         elif FromBitmap != None:
-            self.bitmap = FromBitmap
+            try:
+                if FromBitmap.__class__.__init__ == "Bitmap" or "Frame":
+                    self.bitmap = [[(I*1)for I in i]for i in FromBitmap.bitmap]
+                else: self.bitmap = [[(I*1)for I in i]for i in FromBitmap]
+            except: self.bitmap = [[(I*1)for I in i]for i in FromBitmap]
         else:
             raise SyntaxError("Not enough information to create bitmap")
 
