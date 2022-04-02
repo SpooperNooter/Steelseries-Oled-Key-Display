@@ -271,7 +271,7 @@ class Packet_posting:
         try:
             r = requests.post("http://" + self.sseAddress + endpoint, json=metadata, headers=self.header)
             if r.status_code != 200:
-                raise ConnectionError("Post status code returned as %s" % str(r.status_code))
+                raise ConnectionError(f"Post status code for %s returned as %s" % str(endpoint),str(r.status_code))
             return r
         except Exception as e:
             raise ConnectionError(e)
